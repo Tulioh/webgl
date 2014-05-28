@@ -1,4 +1,4 @@
-var ShaderUtil = function() {
+var ShaderLoader = function() {
     this.shader = null;
     
     this.getVertexShader = function() {
@@ -7,23 +7,23 @@ var ShaderUtil = function() {
     };
     
     this.getFragmentShader = function() {
-        this.shader = gl.createShader( gl.VERTEX_SHADER );
-        return this.compileSource( new Shader().getFragmentShaderSource()() );
+        this.shader = gl.createShader( gl.FRAGMENT_SHADER );
+        return this.compileSource( new Shader().getFragmentShaderSource() );
     };
 };
 
-ShaderUtil.prototype = {
-    constructor: ShaderUtil,
+ShaderLoader.prototype = {
+    constructor: ShaderLoader,
     
     compileSource: function( shaderType ) {
-        gl.shaderSource( shader, shaderType() );
-        gl.compileShader( shader );
+        gl.shaderSource( this.shader, shaderType );
+        gl.compileShader( this.shader );
         
-        if ( !gl.getShaderParameter( shader, gl.COMPILE_STATUS ) ) {
-            alert( gl.getShaderInfoLog( shader ) );
+        if ( !gl.getShaderParameter( this.shader, gl.COMPILE_STATUS ) ) {
+            alert( gl.getShaderInfoLog( this.shader ) );
             return null;
         }
         
-        return shader;
+        return this.shader;
     }
 };

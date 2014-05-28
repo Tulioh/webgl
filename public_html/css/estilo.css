@@ -1,0 +1,6 @@
+#menus {
+    display: inline-block;
+}
+#menus input {
+    display: block;
+}
