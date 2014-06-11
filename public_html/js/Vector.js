@@ -9,5 +9,18 @@ var Vector = function(x, y, z) {
         this.z = vector.z;
     };
     
+    this.magnitude = function() {
+        var vec = new Vector( this.x, this.y, this.z );
+        return Math.sqrt( ( (vec.x * vec.x) + ( vec.y * vec.y ) + ( vec.z * vec.z ) ) );
+    };
     
+    this.normalize = function() {
+        var mag = this.magnitude();
+        
+        var newX = this.x / mag;
+        var newY = this.y / mag;
+        var newZ = this.z / mag;
+        
+        return new Vector( newX, newY, newZ );
+    };
 };

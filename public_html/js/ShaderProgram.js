@@ -1,29 +1,21 @@
 var ShaderProgram = function() {
-    
-    this.init = function() {
+    if( ShaderProgram.prototype.program !== null ) {
         var vertexShader = new ShaderLoader().getVertexShader();
         var fragmentShader = new ShaderLoader().getFragmentShader();
-        
-        this.program = gl.createProgram();
-        gl.attachShader( this.program, vertexShader );
-        gl.attachShader( this.program, fragmentShader );
-        gl.linkProgram( this.program );
-        
-        if ( !gl.getProgramParameter( this.program, gl.LINK_STATUS ) ) {
+
+        var program = gl.createProgram();
+        gl.attachShader( program, vertexShader );
+        gl.attachShader( program, fragmentShader );
+        gl.linkProgram( program );
+
+        if ( !gl.getProgramParameter( program, gl.LINK_STATUS ) ) {
             alert("Could not initialise shaders");
         }
+
+        gl.useProgram( program );
         
-        gl.useProgram( this.program );
-        
-        return this.program;
-    };
+        ShaderProgram.prototype.program = program;
+    }
     
-    this.getProgram = function() {
-        return this.program;
-    };
+    return ShaderProgram.prototype.program;
 };
-
-ShaderProgram.prototype = {
-    program: null
-};
-
