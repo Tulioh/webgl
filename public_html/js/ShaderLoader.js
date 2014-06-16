@@ -1,21 +1,22 @@
 var ShaderLoader = function() {
     this.shader = null;
     
+    var shaderSource = new Shader1();
+    
     this.getVertexShader = function() {
-        this.shader = gl.createShader( gl.VERTEX_SHADER );
-        return this.compileSource( new Shader().getVertexShaderSource() );
+        return this.compileSource( gl.VERTEX_SHADER, shaderSource.getVertexShaderSource() );
     };
     
     this.getFragmentShader = function() {
-        this.shader = gl.createShader( gl.FRAGMENT_SHADER );
-        return this.compileSource( new Shader().getFragmentShaderSource() );
+        return this.compileSource( gl.FRAGMENT_SHADER, shaderSource.getFragmentShaderSource() );
     };
 };
 
 ShaderLoader.prototype = {
     constructor: ShaderLoader,
     
-    compileSource: function( shaderType ) {
+    compileSource: function( shaderSource, shaderType ) {
+        this.shader = gl.createShader( shaderSource );
         gl.shaderSource( this.shader, shaderType );
         gl.compileShader( this.shader );
         

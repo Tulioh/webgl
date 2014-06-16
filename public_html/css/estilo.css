@@ -1,5 +1,13 @@
+#context {
+    position: absolute;
+    left: 50%;
+    margin-left: -400px;
+    border: solid 1px black;
+}
+
 #menus {
     display: inline-block;
+    float: left;
 }
 #menus input {
     display: block;

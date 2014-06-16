@@ -1,17 +1,15 @@
-var Vector = function(x, y, z) {
+var Vector2d = function(x, y) {
     this.x = x;
     this.y = y;
-    this.z = z;
     
     this.addVector = function( vector ) {
         this.x = vector.x;
         this.y = vector.y;
-        this.z = vector.z;
     };
     
     this.magnitude = function() {
-        var vec = new Vector( this.x, this.y, this.z );
-        return Math.sqrt( ( (vec.x * vec.x) + ( vec.y * vec.y ) + ( vec.z * vec.z ) ) );
+        var vec = new Vector2d( this.x, this.y );
+        return Math.sqrt( ( (vec.x * vec.x) + ( vec.y * vec.y ) ) );
     };
     
     this.normalize = function() {
@@ -19,8 +17,7 @@ var Vector = function(x, y, z) {
         
         var newX = this.x / mag;
         var newY = this.y / mag;
-        var newZ = this.z / mag;
         
-        return new Vector( newX, newY, newZ );
+        return new Vector2d( newX, newY );
     };
 };

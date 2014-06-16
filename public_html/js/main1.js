@@ -7,6 +7,7 @@ document.write('<script type="text/javascript" src="js/InputHandler.js"></script
 document.write('<script type="text/javascript" src="js/Vector2d.js"></script>');
 document.write('<script type="text/javascript" src="js/MathUtil.js"></script>');
 document.write('<script type="text/javascript" src="js/Mat4.js"></script>');
+document.write('<script type="text/javascript" src="js/Shader1.js"></script>');
 
 var gl = null;
 var program;
@@ -56,20 +57,20 @@ var squareVertexPositionBuffer;
 var squareTextureCoordBuffer;
 
 function initBuffers() {
-    var width = 256;
-    var height = 256;
+    var width = 150;
+    var height = 150;
     var x = 0;
     var y = 0;
     
     var vertices = [
         // triangle 1
         x, y,               //v1
-        x, y+height,        //v2
+        x, y+height,       //v2
         x+width, y,         //v3
         
         // triangle 2
         x+width, y,         //v4
-        x, y+height,        //v5
+        x, y+height,       //v5
         x+width, y+height   //v6
     ];
     

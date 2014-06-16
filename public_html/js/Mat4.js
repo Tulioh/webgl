@@ -48,6 +48,28 @@ var Mat4 = function() {
         this.frustum(-b, b, -a, a, c, d);
     };
     
+    this.ortho = function(left, right, bottom, top, near, far) {
+        var lr = 1 / (left - right),
+        bt = 1 / (bottom - top),
+        nf = 1 / (near - far);
+        matrix[0] = -2 * lr;
+        matrix[1] = 0;
+        matrix[2] = 0;
+        matrix[3] = 0;
+        matrix[4] = 0;
+        matrix[5] = -2 * bt;
+        matrix[6] = 0;
+        matrix[7] = 0;
+        matrix[8] = 0;
+        matrix[9] = 0;
+        matrix[10] = 2 * nf;
+        matrix[11] = 0;
+        matrix[12] = (left + right) * lr;
+        matrix[13] = (top + bottom) * bt;
+        matrix[14] = (far + near) * nf;
+        matrix[15] = 1;
+    };
+    
     this.translate = function( vec ) {
         var a = vec[2], b = vec[0], c = vec[1];
         

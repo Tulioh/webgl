@@ -1,23 +1,20 @@
 var InputHandler = function() {
     var positionX = document.getElementById( "position-x" );
     var positionY = document.getElementById( "position-y" );
-    var positionZ = document.getElementById( "position-z" );
-    
-    var rotationX = document.getElementById( "rotation-x" );
-    var rotationY = document.getElementById( "rotation-y" );
-    var rotationZ = document.getElementById( "rotation-z" );
+    var rotationDegree = document.getElementById( "rotation-degree" );
+    var scaleX = document.getElementById( "scale-x" );
+    var scaleY = document.getElementById( "scale-y" );
     
     var xPostionValue = positionX.value = 0;
     var yPostionValue = positionY.value = 0;
-    var zPostionValue = positionZ.value = -7;
-    
-    var xRotationValue = rotationX.value = 0;
-    var yRotationValue = rotationY.value = 0;
-    var zRotationValue = rotationZ.value = 0;
+    var rotationValue = rotationDegree.value = 0;
+    var xscaleValue = scaleX.value = 1;
+    var yscaleValue = scaleY.value = 1;
     
     this.handleTransform = function() {
         onChangePosition();
         onChangeRotation();
+        onChangeScale();
     };
     
     var onChangePosition = function(){
@@ -28,23 +25,21 @@ var InputHandler = function() {
         positionY.onchange = function() {
             positionY.value = yPostionValue = validateInputedNumber( this.value, yPostionValue );
         };
-        
-        positionZ.onchange = function() {
-            positionZ.value = zPostionValue = validateInputedNumber( this.value, zPostionValue );
-        };
     };
     
     var onChangeRotation = function(){
-        rotationX.onchange = function() {
-            rotationX.value = xRotationValue = validateInputedNumber( this.value, xRotationValue );;
+        rotationDegree.onchange = function() {
+            rotationDegree.value = rotationValue = validateInputedNumber( this.value, rotationValue );;
+        };
+    };
+    
+    var onChangeScale = function(){
+        scaleX.onchange = function() {
+            scaleX.value = xscaleValue = validateInputedNumber( this.value, xscaleValue );;
         };
         
-        rotationY.onchange = function() {
-            rotationY.value = yRotationValue = validateInputedNumber( this.value, yRotationValue );
-        };
-        
-        rotationZ.onchange = function() {
-            rotationZ.value = zRotationValue = validateInputedNumber( this.value, zRotationValue );
+        scaleY.onchange = function() {
+            scaleY.value = yscaleValue = validateInputedNumber( this.value, yscaleValue );
         };
     };
     
@@ -59,7 +54,15 @@ var InputHandler = function() {
     };
     
     this.getPosition = function() {
-        return new Vector( xPostionValue, yPostionValue, zPostionValue );
+        return new Vector2d( xPostionValue, yPostionValue );
+    };
+    
+    this.getRotation = function() {
+        return rotationValue;
+    };
+    
+    this.getScale = function() {
+        return new Vector2d( xscaleValue, yscaleValue );
     };
     
     this.getX = function() {
@@ -68,9 +71,5 @@ var InputHandler = function() {
     
     this.getY = function() {
         return yPostionValue;
-    };
-    
-    this.getZ = function() {
-        return zPostionValue;
     };
 };
