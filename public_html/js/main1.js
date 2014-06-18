@@ -84,14 +84,17 @@ function initBuffers() {
         0.0, 1.0, //v1
         0.0, 0.0, //v2
         1.0, 1.0, //v3
-        1.0, 0.0  //v6
+        
+        1.0, 1.0, //v4
+        0.0, 0.0, //v3
+        1.0, 0.0  //v3
     ];
     
     squareTextureCoordBuffer = gl.createBuffer();
     gl.bindBuffer( gl.ARRAY_BUFFER, squareTextureCoordBuffer );
-    gl.bufferData( gl.ARRAY_BUFFER, new Float32Array(textureCoords), gl.STATIC_DRAW );
+    gl.bufferData( gl.ARRAY_BUFFER, new Float32Array( textureCoords ), gl.STATIC_DRAW );
     squareTextureCoordBuffer.itemSize = 2;
-    squareTextureCoordBuffer.numItems = 4;
+    squareTextureCoordBuffer.numItems = 6;
 }
 
 var texture;
@@ -138,12 +141,12 @@ function drawScene() {
     gl.bindBuffer( gl.ARRAY_BUFFER, squareTextureCoordBuffer );
     gl.vertexAttribPointer( program.textureCoordAttribute, squareTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0 );
     
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, texture);
-    gl.uniform1i(program.samplerUniform, 0);
+    gl.activeTexture( gl.TEXTURE0 );
+    gl.bindTexture( gl.TEXTURE_2D, texture );
+    gl.uniform1i( program.samplerUniform, 0 );
     
     gl.uniformMatrix3fv( program.projectionMatrixUniform, false, projectionMatrix.getData() );
     gl.uniformMatrix3fv( program.translationMatrixUniform ,false, translationMatrix.getData() );
     
-    gl.drawArrays( gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems );
+    gl.drawArrays( gl.TRIANGLE_STRIP, 0, squareTextureCoordBuffer.numItems );
 }

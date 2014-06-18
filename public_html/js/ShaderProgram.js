@@ -1,7 +1,9 @@
 var ShaderProgram = function() {
     if( ShaderProgram.prototype.program !== null ) {
-        var vertexShader = new ShaderLoader().getVertexShader();
-        var fragmentShader = new ShaderLoader().getFragmentShader();
+        var shaderLoader = new ShaderLoader();
+        
+        var vertexShader = shaderLoader.getVertexShader();
+        var fragmentShader = shaderLoader.getFragmentShader();
 
         var program = gl.createProgram();
         gl.attachShader( program, vertexShader );

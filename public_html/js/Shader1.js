@@ -9,7 +9,7 @@ var Shader1 = function() {
         "varying vec2 vTextureCoord;" +
         
         "void main(void) {"+
-        "    gl_Position = vec4( ( projectionMatrix * translationMatrix * vec3(vertexPosition, 1) ).xy, 0, 1 );"+
+        "   gl_Position = vec4( ( projectionMatrix * translationMatrix * vec3(vertexPosition, 1) ).xy, 0, 1 );"+
         "   vTextureCoord = aTextureCoord;" +
         "}";
     };
@@ -21,7 +21,8 @@ var Shader1 = function() {
         "uniform sampler2D uSampler;" +
                 
         "void main(void) {" +
-        "    gl_FragColor = vec4(0.2901960784313725, 0.3607843137254902, 0.5803921568627451, 1.0);"+
+        "    gl_FragColor = texture2D( uSampler, vTextureCoord );"+
+        //"    gl_FragColor = vec4(0.2901960784313725, 0.3607843137254902, 0.5803921568627451, 1.0);"+
         "}";
     };
 };
